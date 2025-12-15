@@ -1,0 +1,40 @@
+/* Reset y Variables */
+:root {
+  /* Paleta de colores verde */
+  --primary-color: #7cc551;
+  --primary-light: #e2ff67;
+  --secondary-color: #A0AEC0;
+  --text-color: #E2E8F0;
+  --text-light: #A0AEC0;
+  
+  --background-color: #113f2b;
+  --card-background: #0e6037;
+  --border-color: #348b44;
+  
+  --success-color: #e2ff67;
+  --warning-color: #ED8936;
+  --danger-color: #F56565;
+  
+  --font-family: 'Inter', sans-serif;
+  --title-font: 'Montserrat', sans-serif;
+  --subtitle-font: 'Playfair Display', serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+} 

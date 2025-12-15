@@ -1,0 +1,203 @@
+.report-item {
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    background-color: var(--card-background);
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 1rem;
+    border-top: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    transition: transform 0.2s;
+}
+
+.report-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.report-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    flex: 1;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.status-pending {
+    background-color: #642C2C;
+    color: var(--danger-color);
+}
+
+.status-progress {
+    background-color: #644B2C;
+    color: var(--warning-color);
+}
+
+.status-resolved {
+    background-color: #1E4631;
+    color: var(--success-color);
+}
+
+.report-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.report-meta strong {
+    color: var(--primary-light);
+}
+
+.report-citizen {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.report-citizen strong {
+    color: var(--primary-light);
+}
+
+.report-description {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* Estilos para ubicación */
+.report-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background-color: rgba(124, 197, 81, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.report-location i {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.report-location span {
+    color: var(--text-light);
+}
+
+.location-link {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+    transition: all 0.3s;
+}
+
+.location-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Estilos para foto */
+.report-photo-section {
+    margin-bottom: 1rem;
+}
+
+.show-photo-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--border-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.show-photo-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.report-photo {
+    margin-top: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.report-photo img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+}
+
+.report-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .report-header {
+        flex-direction: column;
+    }
+
+    .report-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .report-location {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .location-link {
+        margin-left: 0;
+    }
+
+    .report-photo img {
+        max-width: 100%;
+    }
+}

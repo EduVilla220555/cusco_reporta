@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santiago Reporta - Administrador</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- FUENTES ACTUALIZADAS -->
+    <!-- Inter como fallback general -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Montserrat para el título principal -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Playfair Display para el subtítulo (similar a la fuente Munay Llaqtanchis) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* --- Sistema de Diseño (Green Theme) --- */
+        :root {
+            --font-family: 'Inter', sans-serif;
+            --title-font-family: 'Montserrat', sans-serif;
+            --subtitle-font-family: 'Playfair Display', serif;
+            
+            /* --- PALETA DE VERDES --- */
+            --primary-color: #7cc551; /* Color principal (botón, highlight) - Color 4 */
+            --primary-light: #e2ff67; /* Color más claro para hover/sombra - Color 5 */
+            --secondary-color: #A0AEC0; /* Gris para textos secundarios */
+            --text-color: #E2E8F0; /* Blanco roto para texto principal */
+            --text-light: #A0AEC0; 
+            
+            --background-color: #113f2b; /* Fondo principal de la página - Color 1 */
+            --card-background: #0e6037; /* Fondo de las tarjetas/modales - Color 2 */
+            --border-color: #348b44; /* Borde y separadores - Color 3 */
+            
+            --success-color: #e2ff67; /* Verde muy claro para éxito */
+            --warning-color: #ED8936;
+            --danger-color: #F56565;
+            --info-color: #7cc551;
+            
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- Reseteo y Estilos Base --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* --- Componentes Reutilizables --- */
+        .card {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--background-color); /* Usar el verde oscuro para el texto del botón primario */
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(124, 197, 81, 0.4);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: var(--font-family);
+            transition: var(--transition);
+            background-color: var(--background-color); /* Fondo de input más oscuro */
+            color: var(--text-color);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(124, 197, 81, 0.3);
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 1px solid transparent;
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeIn 0.5s forwards;
+        }
+        /* Ajuste de alertas para el nuevo tema de colores */
+        .alert-success { background-color: #1E4631; color: #E2FF67; border-color: #7cc551; } 
+        .alert-info { background-color: #17384A; color: #90CDF4; border-color: #4299E1; }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Cabecera --- */
+        .main-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+        .main-header img {
+            height: auto;
+            width: auto;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+        }
+        /* ESTILOS DEL H1 ACTUALIZADOS */
+        .main-header h1 {
+            font-family: var(--title-font-family);
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--text-color);
+            text-shadow: 2px 2px var(--primary-color); /* Sombra con el nuevo color primario */
+            letter-spacing: 1px;
+        }
+        .main-header p {
+            font-family: var(--subtitle-font-family);
+            font-style: italic;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        /* CLASE EDITADA AQUÍ: Se añade !important al width para forzar el tamaño. */
+        .logo-grande {
+            /* Usando una imagen placeholder para simular un logo */
+            content: url('https://placehold.co/100x100/113f2b/7cc551?text=UNSAAC'); 
+            width: 100px !important;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color) !important;
+        }
+        /* --- Navegación por Pestañas --- */
+        .main-nav {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            overflow-x: auto; /* Permite scroll horizontal en móviles */
+            padding-bottom: 5px; /* Espacio para la sombra de scroll */
+        }
+        .nav-tab {
+            /* Eliminamos flex: 1 para que los botones no se achiquen demasiado */
+            padding: 0.75rem 1rem;
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--secondary-color);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            white-space: nowrap; /* Evita que el texto del botón se rompa */
+        }
+        .nav-tab:hover {
+            background-color: #348b44; /* Color 3 */
+            color: var(--text-color);
+        }
+        .nav-tab.active {
+            background-color: var(--primary-color);
+            color: var(--background-color); /* Texto oscuro para botón activo */
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(124, 197, 81, 0.4);
+        }
+
+        /* --- Contenido de Pestañas --- */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* --- Estilos Específicos de Componentes --- */
+        .auth-container {
+            max-width: 450px;
+            margin: 2rem auto;
+        }
+        .auth-container .card {
+            border: none;
+        }
+
+        .user-type-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adaptado para 3 columnas */
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .user-type-card {
+            padding: 1.5rem 1rem; /* Padding ajustado */
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .user-type-card:hover {
+            border-color: var(--primary-color);
+            background-color: var(--background-color);
+        }
+        .user-type-card.selected {
+            border-color: var(--primary-color);
+            background-color: var(--background-color);
+            box-shadow: 0 0 0 3px rgba(124, 197, 81, 0.3);
+        }
+        .user-type-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        .stat-card {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        /* Estilos para el Listado de Usuarios/Roles (Admin) */
+        .user-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background-color: var(--background-color);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--border-color);
+        }
+        .user-list-item strong {
+            color: var(--primary-light);
+        }
+        .user-list-item .user-role {
+            font-size: 0.85rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            background-color: #348b44;
+        }
+        .user-list-item .admin-role {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .report-item {
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            background-color: var(--card-background);
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            margin-bottom: 1rem;
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.2s;
+        }
+        .report-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .report-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        /* Ajuste de colores de estado a la nueva paleta (se mantienen los colores existentes para contraste de significado) */
+        .status-pending { background-color: #642C2C; color: #F56565; } 
+        .status-progress { background-color: #644B2C; color: #ED8936; }
+        .status-resolved { background-color: #1E4631; color: #E2FF67; } /* Resuelto usa el verde claro */
+
+        .auth-toggle-link {
+            color: var(--primary-light);
+            cursor: pointer;
+            text-align: center;
+            margin-top: 1.5rem;
+            display: block;
+        }
+        .auth-toggle-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Responsividad --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            .main-header h1 {
+                font-size: 2rem; /* Ajuste para móvil */
+            }
+            .main-nav {
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="main-header">
+            <img src="santiagologo.jpeg" alt="Logo de la empresa" class="logo-grande">
+            <div>
+                <h1>Santiago Reporta</h1> 
+                <p>Plataforma de Reportes de Incidencias Urbanas - UNSAAC</p>
+            </div>
+        </header>
+
+        <nav class="main-nav">
+            <button class="nav-tab active" data-tab="auth">
+                <i class="fas fa-sign-in-alt"></i> Acceso
+            </button>
+            <button class="nav-tab" data-tab="citizen">
+                <i class="fas fa-user"></i> Ciudadano
+            </button>
+            <button class="nav-tab" data-tab="authority">
+                <i class="fas fa-shield-alt"></i> Autoridad
+            </button>
+            <button class="nav-tab" data-tab="admin" id="admin-tab" style="display: none;">
+                <i class="fas fa-cogs"></i> Admin
+            </button>
+            <button class="nav-tab" data-tab="reports">
+                <i class="fas fa-list"></i> Seguimiento
+            </button>
+        </nav>
+
+        <main>
+            <!-- Pestaña de Autenticación -->
+            <section id="auth" class="tab-content active">
+                <div class="auth-container">
+                    <!-- Formulario de Login -->
+                    <div id="login-form" class="card">
+                        <h2 style="text-align: center; margin-bottom: 2rem;">Acceso al Sistema</h2>
+                        <div class="user-type-selector">
+                            <!-- Tarjeta de Ciudadano -->
+                            <div class="user-type-card selected" data-user-type="citizen">
+                                <i class="fas fa-user"></i>
+                                <div><strong>Ciudadano</strong></div>
+                            </div>
+                            <!-- Tarjeta de Autoridad -->
+                            <div class="user-type-card" data-user-type="authority">
+                                <i class="fas fa-shield-alt"></i>
+                                <div><strong>Autoridad</strong></div>
+                            </div>
+                            <!-- Tarjeta de Administrador -->
+                            <div class="user-type-card" data-user-type="admin">
+                                <i class="fas fa-users-cog"></i>
+                                <div><strong>Administrador</strong></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" placeholder="su.email@ejemplo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Contraseña</label>
+                            <input type="password" id="login-password" placeholder="••••••••">
+                        </div>
+                        <button id="loginBtn" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                        </button>
+                        <p class="auth-toggle-link" data-target="register-form">¿No tienes cuenta? Regístrate</p>
+                    </div>
+
+                    <!-- Formulario de Registro -->
+                    <div id="register-form" class="card" style="display: none;">
+                        <h2 style="text-align: center; margin-bottom: 2rem;">Crear Nueva Cuenta</h2>
+                        <div class="form-group">
+                            <label for="register-name">Nombre Completo</label>
+                            <input type="text" id="register-name" placeholder="Juan Pérez">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" placeholder="su.email@ejemplo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Contraseña</label>
+                            <input type="password" id="register-password" placeholder="Mínimo 8 caracteres">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirmar Contraseña</label>
+                            <input type="password" id="register-confirm-password" placeholder="Repita su contraseña">
+                        </div>
+                        <button id="registerBtn" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-user-plus"></i> Registrarse
+                        </button>
+                        <p class="auth-toggle-link" data-target="login-form">¿Ya tienes cuenta? Inicia Sesión</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pestaña Ciudadano: Reportar y Ver Mis Reportes -->
+            <section id="citizen" class="tab-content">
+                 <div class="card">
+                    <h3><i class="fas fa-plus-circle"></i> Reportar Nueva Incidencia</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                        <div class="form-group">
+                            <label for="incidenceType">Tipo de Incidencia</label>
+                            <select id="incidenceType">
+                                <option value="">Seleccione...</option>
+                                <option value="vias">Vías y Pistas Dañadas</option>
+                                <option value="alumbrado">Falta de Alumbrado</option>
+                                <option value="basura">Acumulación de Basura</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Prioridad</label>
+                            <select id="priority">
+                                <option value="baja">Baja</option>
+                                <option value="media">Media</option>
+                                <option value="alta">Alta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportTitle">Título del Reporte</label>
+                        <input type="text" id="reportTitle" placeholder="Ej: Hueco en la Av. El Sol">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        <textarea id="description" rows="4" placeholder="Describa la incidencia..."></textarea>
+                    </div>
+                    <button id="submitReportBtn" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Enviar Reporte
+                    </button>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-history"></i> Mis Reportes</h3>
+                    <div id="citizenReports"></div>
+                </div>
+            </section>
+
+            <!-- Pestaña Autoridad: Dashboard y Atención de Reportes -->
+            <section id="authority" class="tab-content">
+                 <div class="stats-grid">
+                    <div class="stat-card">
+                        <div id="pendingCount" class="stat-number">0</div>
+                        <div>Pendientes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="progressCount" class="stat-number">0</div>
+                        <div>En Proceso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div id="resolvedCount" class="stat-number">0</div>
+                        <div>Resueltos</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Reportes Pendientes de Atención</h3>
+                    <div id="pendingReports"></div>
+                </div>
+            </section>
+
+            <!-- NUEVA PESTAÑA: ADMINISTRADOR -->
+            <section id="admin" class="tab-content">
+                <div class="card">
+                    <h3><i class="fas fa-user-shield"></i> Gestión de Usuarios y Roles</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                        Aquí se pueden asignar roles de Autoridad a los usuarios registrados.
+                    </p>
+                    <div id="userManagementList">
+                        <!-- Lista de usuarios se renderizará aquí -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Pestaña Seguimiento: Búsqueda y Filtro de Reportes (Pública) -->
+            <section id="reports" class="tab-content">
+                <div class="card">
+                    <h3><i class="fas fa-search"></i> Buscar y Filtrar Reportes</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                        <div class="form-group">
+                            <label for="searchCode">Buscar por Título o Código</label>
+                            <input type="text" id="searchCode" placeholder="Buscar...">
+                        </div>
+                        <div class="form-group">
+                            <label for="statusFilter">Filtrar por Estado</label>
+                            <select id="statusFilter">
+                                <option value="">Todos</option>
+                                <option value="pending">Pendiente</option>
+                                <option value="progress">En Proceso</option>
+                                <option value="resolved">Resuelto</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="searchResults"></div>
+            </section>
+        </main>
+        
+        <div id="alert-container" style="position: fixed; top: 20px; right: 20px; z-index: 1000; width: 320px;"></div>
+
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const CuscoReportaApp = {
+            // --- STATE ---
+            state: {
+                currentUser: null,
+                activeTab: 'auth',
+                authView: 'login-form', // 'login-form' or 'register-form'
+                reports: [
+                    { id: 'RPT-001', title: 'Hueco grande en Av. El Sol', type: 'vias', status: 'pending', priority: 'alta', date: '2025-09-25', citizen: 'juan.perez@email.com' },
+                    { id: 'RPT-002', title: 'Luminaria malograda', type: 'alumbrado', status: 'progress', priority: 'media', date: '2025-09-24', citizen: 'maria.gonzalez@email.com' },
+                    { id: 'RPT-003', title: 'Acumulación de basura', type: 'basura', status: 'resolved', priority: 'alta', date: '2025-09-20', citizen: 'juan.perez@email.com' }
+                ],
+                users: [
+                    // Usuario Ciudadano por defecto
+                    { name: 'Juan Pérez', email: 'juan.perez@email.com', password: '1234', role: 'citizen' },
+                    // Usuario Autoridad
+                    { name: 'Maria González', email: 'maria.gonzalez@email.com', password: '4321', role: 'authority' },
+                    // NUEVO USUARIO ADMINISTRADOR
+                    { name: 'Admin Principal', email: 'admin@santiago.pe', password: 'superadmin123', role: 'admin' }
+                ],
+                userType: 'citizen'
+            },
+
+            // --- SELECTORS ---
+            selectors: {
+                navTabs: document.querySelectorAll('.nav-tab'),
+                tabContents: document.querySelectorAll('.tab-content'),
+                authToggleLinks: document.querySelectorAll('.auth-toggle-link'),
+                loginForm: document.getElementById('login-form'),
+                registerForm: document.getElementById('register-form'),
+                loginBtn: document.getElementById('loginBtn'),
+                registerBtn: document.getElementById('registerBtn'),
+                userTypeCards: document.querySelectorAll('.user-type-card'),
+                citizenReportsContainer: document.getElementById('citizenReports'),
+                pendingReportsContainer: document.getElementById('pendingReports'),
+                searchResultsContainer: document.getElementById('searchResults'),
+                pendingCount: document.getElementById('pendingCount'),
+                progressCount: document.getElementById('progressCount'),
+                resolvedCount: document.getElementById('resolvedCount'),
+                submitReportBtn: document.getElementById('submitReportBtn'),
+                searchInput: document.getElementById('searchCode'),
+                statusFilter: document.getElementById('statusFilter'),
+                adminTab: document.getElementById('admin-tab'),
+                userManagementList: document.getElementById('userManagementList') // Nuevo selector
+            },
+
+            // --- INITIALIZATION ---
+            init() {
+                this.bindEvents();
+                this.render();
+            },
+
+            // --- EVENT BINDING ---
+            bindEvents() {
+                this.selectors.navTabs.forEach(tab => {
+                    tab.addEventListener('click', (e) => this.handleTabClick(e.currentTarget.dataset.tab));
+                });
+
+                this.selectors.authToggleLinks.forEach(link => {
+                    link.addEventListener('click', () => this.toggleAuthView(link.dataset.target));
+                });
+
+                this.selectors.loginBtn.addEventListener('click', () => this.login());
+                this.selectors.registerBtn.addEventListener('click', () => this.register());
+
+                this.selectors.userTypeCards.forEach(card => {
+                    card.addEventListener('click', () => this.selectUserType(card.dataset.userType));
+                });
+                
+                this.selectors.submitReportBtn.addEventListener('click', () => this.submitReport());
+
+                this.selectors.searchInput.addEventListener('input', () => this.renderSearchResults());
+                this.selectors.statusFilter.addEventListener('change', () => this.renderSearchResults());
+                
+                // Listener para delegación de eventos en gestión de usuarios (Admin)
+                this.selectors.userManagementList.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('btn-toggle-role')) {
+                        const { userEmail, currentRole } = e.target.dataset;
+                        this.toggleUserRole(userEmail, currentRole);
+                    }
+                });
+            },
+
+            // --- HANDLERS ---
+            handleTabClick(tabId) {
+                if (!this.state.currentUser && tabId !== 'auth') {
+                    this.showAlert('info', 'Por favor, inicie sesión para acceder a esta sección.');
+                    return;
+                }
+                
+                // Restricción de acceso por rol
+                if (tabId === 'authority' && this.state.currentUser.role !== 'authority' && this.state.currentUser.role !== 'admin') {
+                    this.showAlert('info', 'Acceso denegado. Se requiere rol de Autoridad.');
+                    return;
+                }
+                if (tabId === 'admin' && this.state.currentUser.role !== 'admin') {
+                    this.showAlert('info', 'Acceso denegado. Se requiere rol de Administrador.');
+                    return;
+                }
+                if (tabId === 'citizen' && this.state.currentUser.role === 'admin') {
+                     this.showAlert('info', 'Acceso denegado. Los administradores usan las pestañas de Admin/Autoridad.');
+                     return;
+                }
+
+
+                this.state.activeTab = tabId;
+                this.render();
+            },
+
+            toggleAuthView(targetView) {
+                this.state.authView = targetView;
+                this.render();
+            },
+
+            selectUserType(type) {
+                this.state.userType = type;
+                this.renderUserTypeSelection();
+            },
+
+            login() {
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                const user = this.state.users.find(u => u.email === email && u.password === password);
+
+                if (user) {
+                    // Verificar que el tipo seleccionado en la UI coincida con el rol del usuario, excepto si es Admin (que puede loguearse como cualquiera)
+                    if (this.state.userType === user.role || user.role === 'admin') {
+                        // Si es Admin y selecciona Authority, se loguea como Authority.
+                        const loginRole = user.role === 'admin' ? this.state.userType : user.role; 
+                        
+                        this.state.currentUser = { email, name: user.name, role: user.role, loginRole: loginRole }; 
+                        this.state.activeTab = loginRole; // Navega a la pestaña de su rol de login
+                        
+                        this.showAlert('success', `Bienvenido, ${user.name}. Accediendo como ${loginRole === 'citizen' ? 'Ciudadano' : (loginRole === 'authority' ? 'Autoridad' : 'Administrador')}.`);
+                        this.render();
+                    } else {
+                        this.showAlert('info', `El usuario ${email} es un ${user.role}. Por favor, seleccione el rol correcto.`);
+                    }
+                } else {
+                    this.showAlert('info', 'Credenciales incorrectas o usuario no encontrado.');
+                }
+            },
+
+            register() {
+                const name = document.getElementById('register-name').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                const confirmPassword = document.getElementById('register-confirm-password').value;
+
+                if (!name || !email || !password) {
+                    return this.showAlert('info', 'Todos los campos son obligatorios.');
+                }
+                if (password !== confirmPassword) {
+                    return this.showAlert('info', 'Las contraseñas no coinciden.');
+                }
+                if (this.state.users.some(u => u.email === email)) {
+                    return this.showAlert('info', 'Este email ya está registrado.');
+                }
+
+                // Por defecto, los registros son de rol 'citizen'
+                const newUser = { name, email, password, role: 'citizen' }; 
+                this.state.users.push(newUser);
+                this.showAlert('success', '¡Registro exitoso! Ahora puedes iniciar sesión.');
+                this.state.authView = 'login-form';
+                this.render();
+            },
+            
+            submitReport() {
+                if (this.state.currentUser.loginRole !== 'citizen') {
+                     this.showAlert('info', 'Solo los ciudadanos pueden crear reportes.');
+                     return;
+                }
+                
+                const newReport = {
+                    id: `RPT-${String(this.state.reports.length + 1).padStart(3, '0')}`,
+                    title: document.getElementById('reportTitle').value,
+                    type: document.getElementById('incidenceType').value,
+                    priority: document.getElementById('priority').value,
+                    description: document.getElementById('description').value,
+                    status: 'pending',
+                    date: new Date().toISOString().split('T')[0],
+                    citizen: this.state.currentUser.email
+                };
+
+                if (!newReport.title || !newReport.type) {
+                    this.showAlert('info', 'El título y el tipo de incidencia son obligatorios.');
+                    return;
+                }
+
+                this.state.reports.unshift(newReport);
+                this.showAlert('success', 'Reporte enviado con éxito.');
+                this.render();
+                // Limpiar formulario
+                document.getElementById('reportTitle').value = '';
+                document.getElementById('incidenceType').value = '';
+                document.getElementById('priority').value = 'baja';
+                document.getElementById('description').value = '';
+            },
+            
+            toggleUserRole(email, currentRole) {
+                const userIndex = this.state.users.findIndex(u => u.email === email);
+                if (userIndex === -1) return;
+
+                const newRole = currentRole === 'authority' ? 'citizen' : 'authority';
+                
+                if (newRole === 'citizen' && this.state.users[userIndex].role === 'admin') {
+                    this.showAlert('error', 'No se puede cambiar el rol del Administrador principal.');
+                    return;
+                }
+
+                this.state.users[userIndex].role = newRole;
+                this.showAlert('success', `Rol de ${this.state.users[userIndex].name} actualizado a "${newRole}".`);
+                this.renderUserManagementList(); // Volver a renderizar la lista de gestión
+            },
+
+            // --- RENDER FUNCTIONS ---
+            render() {
+                this.renderTabs();
+                this.renderAdminTabVisibility();
+                this.renderAuthView();
+                this.renderUserTypeSelection();
+                this.renderCitizenReports();
+                this.renderAuthorityDashboard();
+                this.renderSearchResults();
+                this.renderUserManagementList(); // Renderizar lista de Admin
+            },
+
+            renderAdminTabVisibility() {
+                // Si el usuario logueado es admin, muestra la pestaña de Admin
+                const isUserAdmin = this.state.currentUser && this.state.currentUser.role === 'admin';
+                this.selectors.adminTab.style.display = isUserAdmin ? 'flex' : 'none';
+            },
+
+            renderAuthView() {
+                if (this.selectors.loginForm) {
+                    this.selectors.loginForm.style.display = this.state.authView === 'login-form' ? 'block' : 'none';
+                }
+                if (this.selectors.registerForm) {
+                    this.selectors.registerForm.style.display = this.state.authView === 'register-form' ? 'block' : 'none';
+                }
+            },
+
+            renderTabs() {
+                this.selectors.navTabs.forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.tab === this.state.activeTab);
+                });
+                this.selectors.tabContents.forEach(content => {
+                    content.classList.toggle('active', content.id === this.state.activeTab);
+                });
+            },
+
+            renderUserTypeSelection() {
+                this.selectors.userTypeCards.forEach(card => {
+                    card.classList.toggle('selected', card.dataset.userType === this.state.userType);
+                });
+            },
+
+            renderCitizenReports() {
+                // Solo renderizar si está en la pestaña citizen Y su rol de login es citizen
+                if (!this.state.currentUser || !this.selectors.citizenReportsContainer || this.state.currentUser.loginRole !== 'citizen') return;
+                
+                const userReports = this.state.reports.filter(r => r.citizen === this.state.currentUser.email);
+                this.selectors.citizenReportsContainer.innerHTML = userReports.length > 0 
+                    ? userReports.map(r => this.createReportHTML(r, false)).join('') // Ciudadano solo ve sus reportes
+                    : '<p style="color: var(--text-light);">No tienes reportes aún.</p>';
+            },
+
+            renderAuthorityDashboard() {
+                if (!this.selectors.pendingCount) return; 
+
+                // Solo si el rol de login es authority o admin
+                const isAuthorityView = this.state.currentUser && (this.state.currentUser.loginRole === 'authority' || this.state.currentUser.loginRole === 'admin');
+
+                const pending = this.state.reports.filter(r => r.status === 'pending');
+                this.selectors.pendingCount.textContent = this.state.reports.filter(r => r.status === 'pending').length;
+                this.selectors.progressCount.textContent = this.state.reports.filter(r => r.status === 'progress').length;
+                this.selectors.resolvedCount.textContent = this.state.reports.filter(r => r.status === 'resolved').length;
+
+                this.selectors.pendingReportsContainer.innerHTML = pending.length > 0
+                    ? pending.map(r => this.createReportHTML(r, isAuthorityView, true)).join('')
+                    : '<p style="color: var(--text-light);">No hay reportes pendientes.</p>';
+                
+                // Si está logueado como autoridad/admin, añadir listeners de botones
+                if (isAuthorityView) {
+                    this.selectors.pendingReportsContainer.querySelectorAll('.btn-update-status').forEach(btn => {
+                        // Clonar y reemplazar para evitar listeners duplicados
+                        const newBtn = btn.cloneNode(true);
+                        btn.parentNode.replaceChild(newBtn, btn);
+                        
+                        newBtn.addEventListener('click', (e) => {
+                            const { reportId, newStatus } = e.currentTarget.dataset;
+                            this.updateStatus(reportId, newStatus);
+                        });
+                    });
+                }
+            },
+            
+            renderSearchResults() {
+                if (!this.selectors.searchResultsContainer) return;
+                const searchTerm = this.selectors.searchInput.value.toLowerCase();
+                const statusFilter = this.selectors.statusFilter.value;
+
+                const filteredReports = this.state.reports.filter(r => {
+                    const matchesSearch = r.title.toLowerCase().includes(searchTerm) || r.id.toLowerCase().includes(searchTerm);
+                    const matchesStatus = !statusFilter || r.status === statusFilter;
+                    return matchesSearch && matchesStatus;
+                });
+
+                this.selectors.searchResultsContainer.innerHTML = filteredReports.length > 0
+                    ? filteredReports.map(r => this.createReportHTML(r, true, false)).join('') // Muestra info de ciudadano en la búsqueda
+                    : '<p style="color: var(--text-light);">No se encontraron reportes.</p>';
+            },
+            
+            renderUserManagementList() {
+                if (this.state.currentUser && this.state.currentUser.role === 'admin' && this.selectors.userManagementList) {
+                    this.selectors.userManagementList.innerHTML = this.state.users.map(user => this.createUserManagementHTML(user)).join('');
+                }
+            },
+
+            updateStatus(reportId, newStatus) {
+                const report = this.state.reports.find(r => r.id === reportId);
+                if (report) {
+                    report.status = newStatus;
+                    this.showAlert('success', `Reporte ${reportId} actualizado a "${newStatus}".`);
+                    this.render();
+                }
+            },
+
+            // --- UTILIDADES ---
+            createUserManagementHTML(user) {
+                const isCitizen = user.role === 'citizen';
+                const isAdmin = user.role === 'admin';
+                const roleClass = isAdmin ? 'admin-role' : (isCitizen ? '' : 'user-role');
+                const roleText = isAdmin ? 'Administrador' : (isCitizen ? 'Ciudadano' : 'Autoridad');
+                const buttonText = isCitizen ? 'Asignar Autoridad' : 'Revocar Autoridad';
+                const buttonIcon = isCitizen ? 'fas fa-arrow-up' : 'fas fa-arrow-down';
+                const buttonStyle = isCitizen ? 'background-color: var(--primary-color);' : 'background-color: var(--danger-color);';
+
+                const actions = isAdmin ? 
+                    `<span class="user-role admin-role"><i class="fas fa-lock"></i> No Editable</span>` : 
+                    `<button class="btn btn-toggle-role" data-user-email="${user.email}" data-current-role="${user.role}" 
+                        style="${buttonStyle} color: var(--background-color); padding: 0.5rem 1rem; font-size: 0.875rem;">
+                        <i class="${buttonIcon}"></i> ${buttonText}
+                    </button>`;
+                
+                return `
+                    <div class="user-list-item">
+                        <div>
+                            <strong>${user.name}</strong> 
+                            <span style="color: var(--text-light); font-size: 0.9rem;">(${user.email})</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span class="user-role ${roleClass}">${roleText}</span>
+                            ${actions}
+                        </div>
+                    </div>
+                `;
+            },
+            
+            createReportHTML(report, showCitizenInfo = false, showActions = false) {
+                const statusMap = {
+                    pending: { text: 'Pendiente', class: 'status-pending' },
+                    progress: { text: 'En Proceso', class: 'status-progress' },
+                    resolved: { text: 'Resuelto', class: 'status-resolved' }
+                };
+                
+                // Lógica de acciones para Autoridad/Admin
+                let actionsHTML = '';
+                if (showActions) {
+                    if (report.status === 'pending') {
+                        actionsHTML = `
+                            <button class="btn btn-update-status" data-report-id="${report.id}" data-new-status="progress" style="background: var(--warning-color); color: white; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                                <i class="fas fa-play"></i> Iniciar
+                            </button>
+                            <button class="btn btn-update-status" data-report-id="${report.id}" data-new-status="resolved" style="background: var(--success-color); color: var(--background-color); padding: 0.5rem 1rem; font-size: 0.875rem;">
+                                <i class="fas fa-check"></i> Resolver
+                            </button>
+                        `;
+                    } else if (report.status === 'progress') {
+                        actionsHTML = `
+                            <button class="btn btn-update-status" data-report-id="${report.id}" data-new-status="resolved" style="background: var(--success-color); color: var(--background-color); padding: 0.5rem 1rem; font-size: 0.875rem;">
+                                <i class="fas fa-check"></i> Finalizar
+                            </button>
+                        `;
+                    }
+                    // Si ya está resuelto, no hay acciones
+                }
+
+                return `
+                    <div class="report-item">
+                        <div class="report-header">
+                            <div class="report-title">${report.title}</div>
+                            <span class="status-badge ${statusMap[report.status].class}">${statusMap[report.status].text}</span>
+                        </div>
+                        <div style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                            <strong>ID:</strong> ${report.id} | <strong>Fecha:</strong> ${report.date} | <strong>Prioridad:</strong> ${report.priority}
+                        </div>
+                        ${showCitizenInfo ? `<div style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;"><strong>Ciudadano:</strong> ${report.citizen}</div>` : ''}
+                        
+                        ${report.description ? `<p style="font-size: 0.95rem; color: var(--text-color); margin-bottom: 1rem;">${report.description}</p>` : ''}
+                        
+                        ${showActions ? `
+                            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                                ${actionsHTML}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            },
+
+            showAlert(type, message) {
+                const alertContainer = document.getElementById('alert-container');
+                const alertDiv = document.createElement('div');
+                alertDiv.className = `alert alert-${type}`;
+                alertDiv.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i> ${message}`;
+                alertContainer.appendChild(alertDiv);
+                setTimeout(() => {
+                    alertDiv.style.opacity = '0';
+                    setTimeout(() => alertDiv.remove(), 300);
+                }, 4000);
+            }
+        };
+
+        CuscoReportaApp.init();
+    });
+    </script>
+
+</body>
+</html>

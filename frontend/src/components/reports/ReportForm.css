@@ -1,0 +1,105 @@
+.report-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para input de archivo */
+.file-input {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.file-input::-webkit-file-upload-button {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.file-input::-webkit-file-upload-button:hover {
+    background-color: var(--primary-light);
+}
+
+/* Preview de foto */
+.photo-preview {
+    margin-top: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: var(--background-color);
+}
+
+.photo-preview img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.remove-photo-btn {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.remove-photo-btn:hover {
+    background-color: #C53030;
+}
+
+/* Contenedor de ubicación */
+.location-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: rgba(124, 197, 81, 0.1);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+}
+
+.location-info i {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.location-info span {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.location-info small {
+    color: var(--text-light);
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    .report-form .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-preview img {
+        max-width: 100%;
+    }
+}
