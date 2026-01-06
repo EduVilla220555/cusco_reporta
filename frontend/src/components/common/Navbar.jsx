@@ -45,7 +45,6 @@ const Navbar = ({ activeTab, onTabChange }) => {
                 <div className="navbar-user">
                     <div className="user-info">
                         <span className="user-name">{user?.name}</span>
-                        <span className="user-role">{user?.role}</span>
                     </div>
                     <button className="btn-logout" onClick={handleLogout}>
                         <i className="fas fa-sign-out-alt"></i>

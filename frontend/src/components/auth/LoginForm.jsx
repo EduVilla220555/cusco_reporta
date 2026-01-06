@@ -49,8 +49,6 @@ const LoginForm = ({ onToggleForm, onSuccess }) => {
 
     return (
         <div className="auth-form">
-            <h2>Acceso al Sistema</h2>
-
             <form onSubmit={handleSubmit}>
                 <div className="user-type-selector">
                     {userTypes.map(type => (

@@ -1,89 +1,317 @@
-.user-management-description {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
+/* Header Section */
+.um-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(239, 199, 94, 0.3);
+}
+
+.um-description {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-secondary);
+}
+
+.um-description i {
+    color: var(--color-secondary);
+    font-size: 1.1rem;
+}
+
+.um-stats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(239, 199, 94, 0.15);
+    border-radius: 8px;
+    color: var(--color-secondary);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.stat-item i {
+    font-size: 1.2rem;
+}
+
+/* Loading State */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    gap: 1rem;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(239, 199, 94, 0.2);
+    border-top-color: var(--color-secondary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 .loading-text {
-    text-align: center;
-    color: var(--text-light);
-    padding: 2rem;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
-.user-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+/* User Grid */
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
-.user-item {
+/* User Card */
+.user-card {
+    background: linear-gradient(145deg, rgba(160, 58, 58, 0.9), rgba(140, 45, 45, 0.8));
+    border: 2px solid rgba(239, 199, 94, 0.3);
+    border-radius: 16px;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.user-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(239, 199, 94, 0.2);
+    border-color: rgba(239, 199, 94, 0.5);
+}
+
+/* Card Header */
+.user-card-header {
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.15);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: var(--background-color);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
     gap: 1rem;
+    border-bottom: 1px solid rgba(239, 199, 94, 0.2);
 }
 
-.user-info {
+.user-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-secondary), #d4af37);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-main-info {
     flex: 1;
+    min-width: 0;
 }
 
 .user-name {
-    color: var(--primary-light);
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-}
-
-.user-email {
-    color: var(--text-light);
-    font-size: 0.9rem;
-}
-
-.user-actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.role-badge {
-    padding: 0.25rem 0.75rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.role-admin {
-    background-color: var(--danger-color);
-    color: white;
+.user-email {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.role-authority {
-    background-color: var(--border-color);
-    color: var(--text-color);
+.user-email i {
+    color: var(--color-secondary);
+    font-size: 0.85rem;
+    flex-shrink: 0;
 }
 
-.role-citizen {
-    background-color: var(--card-background);
-    color: var(--text-light);
-    border: 1px solid var(--border-color);
+/* Card Body */
+.user-card-body {
+    padding: 1.5rem;
 }
 
+.role-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.role-badge-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    width: fit-content;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.role-badge i {
+    font-size: 1rem;
+}
+
+.role-badge.role-admin {
+    background: linear-gradient(135deg, #c62828, #d32f2f);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.role-badge.role-authority {
+    background: linear-gradient(135deg, #1976d2, #2196f3);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.role-badge.role-citizen {
+    background: linear-gradient(135deg, #558b2f, #689f38);
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.role-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin: 0;
+    padding-left: 0.3rem;
+    font-style: italic;
+}
+
+/* Card Footer */
+.user-card-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.user-card-footer button {
+    width: 100%;
+    justify-content: center;
+    font-weight: 600;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.user-card-footer button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 199, 94, 0.3);
+}
+
+/* Admin Lock */
 .admin-lock {
-    color: var(--text-light);
-    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.8rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    width: 100%;
 }
 
+.admin-lock i {
+    color: var(--color-secondary);
+    font-size: 1.1rem;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    .user-item {
-        flex-direction: column;
-        align-items: flex-start;
+    .user-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
     }
 
-    .user-actions {
-        width: 100%;
-        justify-content: space-between;
+    .um-stats {
+        flex-direction: column;
+    }
+
+    .user-card-header {
+        padding: 1.2rem;
+    }
+
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .user-name {
+        font-size: 1.1rem;
+    }
+
+    .user-email {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .um-description {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+
+    .user-card {
+        border-radius: 12px;
+    }
+
+    .user-card-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .user-main-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-email {
+        justify-content: center;
     }
 }

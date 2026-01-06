@@ -1,23 +1,17 @@
 /* Reset y Variables */
 :root {
-  /* Paleta de colores verde */
-  --primary-color: #7cc551;
-  --primary-light: #e2ff67;
-  --secondary-color: #A0AEC0;
-  --text-color: #E2E8F0;
-  --text-light: #A0AEC0;
-  
-  --background-color: #113f2b;
-  --card-background: #0e6037;
-  --border-color: #348b44;
-  
-  --success-color: #e2ff67;
-  --warning-color: #ED8936;
-  --danger-color: #F56565;
+  /* Paleta institucional Municipalidad Provincial del Cusco */
+  --color-primary: #7B1F2B;      /* Bordó institucional */
+  --color-secondary: #EFC75E;    /* Dorado */
+  --color-bg: #7B1F2B;
+  --color-card: #4e0a0a;
+  --color-text: #fff;
+  --color-green: #450000;        /* Verde oscuro para cards de roles */
+  --color-green-light: #550000;
+  --color-input-bg: #500602;     /* Verde oscuro para inputs */
   
   --font-family: 'Inter', sans-serif;
   --title-font: 'Montserrat', sans-serif;
-  --subtitle-font: 'Playfair Display', serif;
 }
 
 * {
@@ -28,13 +22,68 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   line-height: 1.6;
   min-height: 100vh;
+}
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
-} 
+}
+
+/* Contenedor especial para la página de login */
+.login-page {
+  background: linear-gradient(135deg, #7B1F2B 0%, #5a1620 100%);
+  min-height: 100vh;
+}
+
+.login-page .container,
+.home-page .container {
+  background: #ffffff;
+}
+
+/* Tarjeta de bienvenida con fondo blanco */
+.welcome-card {
+  background: #ffffff;
+  border: 2px solid var(--color-secondary);
+  border-radius: 14px;
+  padding: 2rem 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+.welcome-card h1,
+.welcome-card h2 {
+  color: var(--color-primary);
+}
+
+.welcome-card p {
+  color: var(--color-primary);
+}
+
+/* Sección de acceso al sistema */
+.access-section {
+  background: var(--color-primary);
+  border: 2px solid var(--color-secondary);
+  border-radius: 14px;
+  padding: 2rem 2.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+.access-section h2 {
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}

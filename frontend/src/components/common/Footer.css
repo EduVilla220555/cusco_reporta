@@ -1,0 +1,227 @@
+.app-footer {
+  background: linear-gradient(135deg, rgba(123, 31, 43, 0.95), rgba(90, 20, 30, 0.98));
+  color: white;
+  margin-top: auto;
+  padding: 2.5rem 0 1.5rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+  border-top: 3px solid rgba(239, 199, 94, 0.4);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Sección de ubicación */
+.location-section {
+  flex-direction: row;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.location-icon {
+  background: linear-gradient(135deg, rgba(239, 199, 94, 0.2), rgba(239, 199, 94, 0.1));
+  border: 2px solid rgba(239, 199, 94, 0.5);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.location-icon i {
+  font-size: 1.5rem;
+  color: var(--color-secondary);
+}
+
+.location-text h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0 0 0.3rem 0;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.location-text p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+/* Sección de redes sociales */
+.social-section {
+  align-items: center;
+  text-align: center;
+}
+
+.social-section h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0 0 1rem 0;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(239, 199, 94, 0.3);
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.3rem;
+}
+
+.social-link:hover {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 6px 20px rgba(239, 199, 94, 0.4);
+  border-color: var(--color-secondary);
+}
+
+.social-link.facebook:hover {
+  background: linear-gradient(135deg, #1877f2, #0d5dbf);
+  border-color: #1877f2;
+}
+
+.social-link.tiktok:hover {
+  background: linear-gradient(135deg, #000000, #333333);
+  border-color: #00f2ea;
+}
+
+.social-link.instagram:hover {
+  background: linear-gradient(135deg, #f09433, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888);
+  border-color: #e1306c;
+}
+
+.social-link.youtube:hover {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  border-color: #ff0000;
+}
+
+/* Sección de copyright */
+.copyright-section {
+  align-items: center;
+  text-align: center;
+  gap: 1.2rem;
+}
+
+.footer-logos {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.copyright-text {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-footer {
+    padding: 2rem 0 1rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1.5rem;
+  }
+
+  .location-section {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .location-text h3,
+  .location-text p {
+    text-align: center;
+  }
+
+  .social-section h3 {
+    font-size: 1rem;
+  }
+
+  .social-links {
+    gap: 0.8rem;
+  }
+
+  .social-link {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+  }
+
+  .footer-logo {
+    height: 35px;
+  }
+
+  .copyright-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    padding: 0 1rem;
+  }
+
+  .location-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .location-icon i {
+    font-size: 1.3rem;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+}

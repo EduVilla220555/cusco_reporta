@@ -1,97 +1,519 @@
+/* App.css - Estilos generales */
+
+body, html {
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  font-family: var(--font-family);
+}
+
 .app-container {
+  background: var(--color-bg);
+  color: var(--color-text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Loading Screen */
 .loading-screen {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
-  gap: 1rem;
+  background: var(--color-bg);
 }
 
-.loading-screen p {
-  color: var(--text-color);
-  font-size: 1.2rem;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
 }
 
 /* Header */
 .main-header {
-  padding: 2rem;
-  border-bottom: 1px solid var(--border-color);
-  background-color: var(--card-background);
+  background: var(--color-primary);
+  color: var(--color-secondary);
+  border-bottom: 2px solid var(--color-secondary);
+  padding: 0.5rem 0;
 }
 
 .logo-container {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  max-width: 1200px;
+  padding: 0.5rem 3rem;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
-.logo {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 3px solid var(--primary-color);
-  object-fit: cover;
+.logo-container .header-text h1 {
+  color: var(--color-secondary);
+  font-weight: bold;
+  font-size: 2.8rem;
+  margin: 0;
+  font-family: 'Libre Baskerville', serif;
+  letter-spacing: 1px;
 }
 
-.header-text h1 {
-  font-family: var(--title-font);
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--text-color);
-  text-shadow: 2px 2px var(--primary-color);
-  margin-bottom: 0.5rem;
-}
-
-.header-text p {
-  font-family: var(--subtitle-font);
-  font-style: italic;
-  font-size: 1.1rem;
-  color: var(--text-light);
+.logo-container .header-text p {
+  color: #fff;
+  font-size: 1.4rem;
+  margin: 0;
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  letter-spacing: 0.5px;
 }
 
 /* Main Content */
 .main-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cards */
+.card, .Card {
+  background: #a03a3a;
+  color: var(--color-text);
+  border: 2px solid var(--color-secondary);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  margin-bottom: 2rem;
+  padding: 2rem 2.5rem;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.navbar button,
+.navbar .btn,
+.navbar .Button {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar button:hover,
+.navbar .btn:hover,
+.navbar .Button:hover {
+  background: #fffbe6;
+  color: var(--color-primary);
+}
+
+.navbar button.selected,
+.navbar .btn.selected,
+.navbar .Button.selected {
+  background: #fff;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+/* Botones generales */
+button, .btn, .Button {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+button:hover, .btn:hover, .Button:hover {
+  background: #fffbe6;
+  color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Inputs generales */
+input, select, textarea {
+  background: #fff;
+  color: var(--color-primary);
+  border: 2px solid var(--color-secondary);
+  border-radius: 7px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
   width: 100%;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #d4af37;
 }
 
-/* Footer */
-.main-footer {
-  padding: 1.5rem;
+/* Formulario de autenticación */
+.auth-form {
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  margin: 2rem auto;
+  max-width: 420px;
+  box-shadow: none;
+}
+
+.auth-form h2 {
+  color: #EFC75E;
   text-align: center;
-  background-color: var(--card-background);
-  border-top: 1px solid var(--border-color);
-  color: var(--text-light);
-  margin-top: auto;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsive */
+.auth-form label {
+  color: #EFC75E;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.auth-form input[type="email"],
+.auth-form input[type="password"],
+.auth-form input[type="text"] {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  border: 2px solid rgba(239, 199, 94, 0.5);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #EFC75E;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(239, 199, 94, 0.1);
+}
+
+.auth-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.auth-form button {
+  width: 100%;
+  background: linear-gradient(135deg, #EFC75E 0%, #d4af37 100%);
+  color: #7B1F2B;
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(239, 199, 94, 0.3);
+}
+
+.auth-form button:hover {
+  background: linear-gradient(135deg, #d4af37 0%, #EFC75E 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(78, 1, 1, 0.982);
+}
+
+/* Cards de selección de rol */
+.role-selector {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.role-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  border: 2px solid rgba(103, 5, 5, 0.864); 
+  border-radius: 12px;
+  padding: 1.5rem 1.8rem;
+  min-width: 150px;
+  text-align: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.role-card:hover {
+  background: rgba(73, 1, 1, 0.936);
+  border-color: #EFC75E;
+  box-shadow: 0 6px 20px rgba(81, 1, 1, 0.927);
+  transform: translateY(-3px);
+}
+
+.role-card.selected {
+  background: linear-gradient(135deg, #EFC75E 0%, #d4af37 100%);
+  color: #7B1F2B;
+  border: 3px solid #d4af37;
+  box-shadow: 0 6px 24px rgba(86, 2, 2, 0.845);
+}
+
+.role-card svg,
+.role-card .role-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.3rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-badge.status-pending {
+  background: #fffbe6;
+  color: var(--color-primary);
+  border: 1px solid var(--color-secondary);
+}
+
+.status-badge.status-progress {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border: 1px solid var(--color-secondary);
+}
+
+.status-badge.status-resolved {
+  background: #e0cfa0;
+  color: var(--color-primary);
+  border: 1px solid #e0cfa0;
+}
+
+/* Links */
+a, .link {
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover, .link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ========== PANEL DE ADMINISTRACIÓN ========== */
+
+/* Contenedor principal de gestión de usuarios */
+.user-management {
+  padding: 2rem 0;
+}
+
+.user-management h2 {
+  color: var(--color-secondary);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.user-management p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* Cards de usuarios */
+.user-card {
+  background: #a03a3a;
+  border: 2px solid var(--color-secondary);
+  border-radius: 14px;
+  padding: 1.8rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(239, 199, 94, 0.3);
+  border-color: #d4af37;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.user-details h3 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.user-details p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  margin: 0.2rem 0;
+}
+
+/* Badges de roles mejorados */
+.role-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  border: 2px solid;
+}
+
+.role-badge.admin {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border-color: #d4af37;
+}
+
+.role-badge.authority {
+  background: #5a1620;
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.role-badge.citizen {
+  background: #8B2C2C;
+  color: #fff;
+  border-color: rgba(239, 199, 94, 0.5);
+}
+
+/* Badge de estado "No Editable" */
+.non-editable-badge {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-left: 0.5rem;
+}
+
+/* Botones de acción en cards de usuario */
+.user-actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.user-actions button {
+  padding: 0.6rem 1.3rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.user-actions button.assign-authority {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.user-actions button.assign-authority:hover {
+  background: #d4af37;
+  transform: scale(1.05);
+}
+
+.user-actions button.revoke-authority {
+  background: #8B2C2C;
+  color: #fff;
+  border: 2px solid var(--color-secondary);
+}
+
+.user-actions button.revoke-authority:hover {
+  background: #5a1620;
+  border-color: #d4af37;
+  transform: scale(1.05);
+}
+
+/* Lista de usuarios */
+.users-list {
+  margin-top: 2rem;
+}
+
+/* Responsive para panel admin */
 @media (max-width: 768px) {
   .logo-container {
     flex-direction: column;
     text-align: center;
+    padding: 0 1rem;
   }
-
-  .header-text h1 {
-    font-size: 2rem;
+  
+  .logo-container .header-text h1 {
+    font-size: 1.8rem;
   }
-
+  
   .container {
     padding: 1.5rem 1rem;
+  }
+  
+  .card, .Card {
+    padding: 1.5rem 1rem;
+  }
+  
+  .auth-form {
+    padding: 1.5rem 1.2rem;
+    margin: 1rem;
+  }
+  
+  .role-selector {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .role-card {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .navbar {
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+  
+  .user-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .user-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .user-actions button {
+    width: 100%;
+  }
+  
+  .user-card {
+    padding: 1.5rem 1.2rem;
   }
 }

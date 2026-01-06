@@ -30,29 +30,45 @@ const UserManagement = () => {
 
         try {
             await userService.updateUserRole(userId, newRole);
-            setAlert({ type: 'success', message: `Rol actualizado a ${newRole}` });
+            setAlert({ type: 'success', message: `Rol actualizado exitosamente` });
             loadUsers();
         } catch (error) {
             setAlert({ type: 'error', message: error.message || 'Error al actualizar rol' });
         }
     };
 
-    const getRoleBadge = (role) => {
+    const getRoleInfo = (role) => {
         const roleMap = {
-            admin: { label: 'Administrador', class: 'role-admin' },
-            authority: { label: 'Autoridad', class: 'role-authority' },
-            citizen: { label: 'Ciudadano', class: 'role-citizen' }
+            admin: { 
+                label: 'Administrador', 
+                icon: 'fa-shield-halved',
+                class: 'role-admin',
+                description: 'Acceso completo al sistema'
+            },
+            authority: { 
+                label: 'Autoridad', 
+                icon: 'fa-user-tie',
+                class: 'role-authority',
+                description: 'Gestiona reportes'
+            },
+            citizen: { 
+                label: 'Ciudadano', 
+                icon: 'fa-user',
+                class: 'role-citizen',
+                description: 'Crea reportes'
+            }
         };
 
-        const roleData = roleMap[role] || roleMap.citizen;
-
-        return <span className={`role-badge ${roleData.class}`}>{roleData.label}</span>;
+        return roleMap[role] || roleMap.citizen;
     };
 
     if (loading) {
         return (
             <Card title="Gestión de Usuarios y Roles" icon="user-shield">
-                <p className="loading-text">Cargando usuarios...</p>
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p className="loading-text">Cargando usuarios...</p>
+                </div>
             </Card>
         );
     }
@@ -67,40 +83,69 @@ const UserManagement = () => {
                 />
             )}
 
-            <p className="user-management-description">
-                Aquí puedes asignar roles de Autoridad a los usuarios registrados.
-            </p>
-
-            <div className="user-list">
-                {users.map(user => (
-                    <div key={user.id} className="user-item">
-                        <div className="user-info">
-                            <div className="user-name">{user.name}</div>
-                            <div className="user-email">{user.email}</div>
-                        </div>
-                        
-                        <div className="user-actions">
-                            {getRoleBadge(user.role)}
-                            
-                            {user.role !== 'admin' && (
-                                <Button
-                                    variant={user.role === 'citizen' ? 'primary' : 'danger'}
-                                    size="small"
-                                    icon={user.role === 'citizen' ? 'arrow-up' : 'arrow-down'}
-                                    onClick={() => handleToggleRole(user.id, user.role)}
-                                >
-                                    {user.role === 'citizen' ? 'Asignar Autoridad' : 'Revocar Autoridad'}
-                                </Button>
-                            )}
-
-                            {user.role === 'admin' && (
-                                <span className="admin-lock">
-                                    <i className="fas fa-lock"></i> No Editable
-                                </span>
-                            )}
-                        </div>
+            <div className="um-header">
+                <p className="um-description">
+                    <i className="fas fa-info-circle"></i>
+                    Administra los roles y permisos de los usuarios del sistema
+                </p>
+                <div className="um-stats">
+                    <div className="stat-item">
+                        <i className="fas fa-users"></i>
+                        <span>{users.length} Usuarios</span>
                     </div>
-                ))}
+                </div>
+            </div>
+
+            <div className="user-grid">
+                {users.map(user => {
+                    const roleInfo = getRoleInfo(user.role);
+                    return (
+                        <div key={user.id} className={`user-card ${roleInfo.class}`}>
+                            <div className="user-card-header">
+                                <div className="user-avatar">
+                                    <i className={`fas ${roleInfo.icon}`}></i>
+                                </div>
+                                <div className="user-main-info">
+                                    <h3 className="user-name">{user.name}</h3>
+                                    <p className="user-email">
+                                        <i className="fas fa-envelope"></i>
+                                        {user.email}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="user-card-body">
+                                <div className="role-section">
+                                    <div className="role-badge-container">
+                                        <span className={`role-badge ${roleInfo.class}`}>
+                                            <i className={`fas ${roleInfo.icon}`}></i>
+                                            {roleInfo.label}
+                                        </span>
+                                        <p className="role-description">{roleInfo.description}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="user-card-footer">
+                                {user.role !== 'admin' ? (
+                                    <Button
+                                        variant={user.role === 'citizen' ? 'primary' : 'danger'}
+                                        size="small"
+                                        icon={user.role === 'citizen' ? 'user-plus' : 'user-minus'}
+                                        onClick={() => handleToggleRole(user.id, user.role)}
+                                    >
+                                        {user.role === 'citizen' ? 'Asignar Autoridad' : 'Revocar Autoridad'}
+                                    </Button>
+                                ) : (
+                                    <div className="admin-lock">
+                                        <i className="fas fa-lock"></i>
+                                        <span>Rol protegido</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </Card>
     );

@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { ReportProvider } from './context/ReportContext';
 import { ToastProvider } from './components/common/Toast';
 import Navbar from './components/common/Navbar';
+import Footer from './components/common/Footer';
 import LoadingSpinner from './components/common/LoadingSpinner';
 import HomePage from './pages/HomePage';
 import CitizenPage from './pages/CitizenPage';
@@ -44,9 +45,10 @@ function AppContent() {
       <header className="main-header">
         <div className="logo-container">
           <img 
-            src="https://placehold.co/100x100/113f2b/7cc551?text=UNSAAC" 
-            alt="Logo UNSAAC" 
+            src="/municipalidad-cusco-logo.png" 
+            alt="Logo Municipalidad Provincial del Cusco" 
             className="logo"
+            style={{ width: '130px', height: '130px', objectFit: 'contain', background: 'none' }}
           />
           <div className="header-text">
             <h1>Cusco Reporta</h1>
@@ -89,9 +91,7 @@ function AppContent() {
       </main>
 
       {/* Footer */}
-      <footer className="main-footer">
-        <p>© 2025 Cusco Reporta - UNSAAC | Desarrollo de Software I</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

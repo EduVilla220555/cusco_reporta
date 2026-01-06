@@ -1,0 +1,221 @@
+/* HomePage.css - Estilos para la página de inicio */
+
+.home-page {
+    background: linear-gradient(135deg, #7B1F2B 0%, #5a1620 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.home-container {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+/* Sección de Bienvenida */
+.welcome-section {
+    color: #fff;
+    padding: 2rem;
+}
+
+.welcome-content {
+    animation: fadeInLeft 0.8s ease-out;
+}
+
+.welcome-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #EFC75E;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+}
+
+.welcome-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    color: #f0f0f0;
+    font-weight: 300;
+}
+
+.welcome-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 2rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(239, 199, 94, 0.2);
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateX(5px);
+    border-color: rgba(239, 199, 94, 0.4);
+}
+
+.feature-icon {
+    font-size: 1.3rem;
+    min-width: 1.8rem;
+    text-align: center;
+}
+
+.feature-item span:last-child {
+    font-size: 0.95rem;
+    color: #fff;
+}
+
+/* Imagen de Cusco */
+.cusco-image-container {
+    margin-top: 2rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(239, 199, 94, 0.5);
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.cusco-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.cusco-image:hover {
+    transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sección de Autenticación */
+.auth-section {
+    animation: fadeInRight 0.8s ease-out;
+}
+
+.auth-section .Card,
+.auth-section .card {
+    background: linear-gradient(145deg, rgba(90, 22, 32, 0.95), rgba(123, 31, 43, 0.9));
+    backdrop-filter: blur(20px);
+    color: #fff;
+    border: 2px solid rgba(239, 199, 94, 0.6);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                0 0 40px rgba(239, 199, 94, 0.1) inset;
+    padding: 2.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.auth-title {
+    text-align: center;
+    color: #EFC75E;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(239, 199, 94, 0.4);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Animaciones */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .home-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .welcome-section {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .welcome-title {
+        font-size: 2.2rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .feature-item {
+        justify-content: center;
+    }
+
+    .feature-item:hover {
+        transform: translateX(0) scale(1.02);
+    }
+}
+
+@media (max-width: 600px) {
+    .home-page {
+        padding: 1rem 0.5rem;
+    }
+
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1rem;
+    }
+
+    .feature-item {
+        padding: 0.8rem 1rem;
+    }
+
+    .feature-item span:last-child {
+        font-size: 0.95rem;
+    }
+
+    .auth-section .Card,
+    .auth-section .card {
+        padding: 1.5rem;
+    }
+}
