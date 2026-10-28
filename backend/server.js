@@ -15,7 +15,18 @@ const PORT = process.env.PORT || 5000;
 
 // Middlewares globales
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: (origin, callback) => {
+        // Permitir solicitudes sin origin (como apps móviles, Postman o llamadas locales)
+        if (!origin) return callback(null, true);
+        
+        // Permitir cualquier puerto en localhost, 127.0.0.1 o CLIENT_URL configurado
+        const isLocalhost = /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+        if (isLocalhost || origin === process.env.CLIENT_URL || process.env.NODE_ENV === 'development') {
+            return callback(null, true);
+        }
+        
+        callback(new Error('Bloqueado por CORS'));
+    },
     credentials: true
 }));
 

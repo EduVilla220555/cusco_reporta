@@ -1,0 +1,288 @@
+/* InteractiveMap.css - Mapa Urbano de Incidencias en Cusco */
+
+.interactive-map-container {
+    background: linear-gradient(145deg, rgba(131, 20, 44, 0.85) 0%, rgba(68, 0, 13, 0.95) 100%);
+    border: 2px solid var(--color-gold);
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.map-header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(249, 210, 118, 0.25);
+}
+
+.map-title-info {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.map-title-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-maroon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.map-title-text h4 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-gold);
+    margin: 0;
+    font-family: var(--title-font);
+}
+
+.map-title-text p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.map-filter-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.map-filter-btn {
+    background: rgba(68, 0, 13, 0.65);
+    border: 1px solid rgba(249, 210, 118, 0.3);
+    color: #ffffff;
+    padding: 0.35rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.map-filter-btn:hover {
+    background: rgba(173, 29, 69, 0.6);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+.map-filter-btn.active {
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-maroon);
+    border-color: #ffffff;
+    font-weight: 700;
+}
+
+/* El lienzo del mapa Leaflet */
+.leaflet-map-wrapper {
+    width: 100%;
+    height: 440px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1.5px solid rgba(249, 210, 118, 0.35);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 1;
+}
+
+/* Leyenda del mapa */
+.map-legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(249, 210, 118, 0.2);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.legend-dot.pending {
+    background: #F9D276;
+    box-shadow: 0 0 8px rgba(249, 210, 118, 0.8);
+}
+
+.legend-dot.progress {
+    background: #AD1D45;
+    box-shadow: 0 0 8px rgba(173, 29, 69, 0.8);
+}
+
+.legend-dot.resolved {
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
+}
+
+/* Custom Marker HTML */
+.custom-map-marker {
+    background: transparent;
+    border: none;
+}
+
+.marker-pin {
+    width: 36px;
+    height: 36px;
+    border-radius: 50% 50% 50% 0;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -20px 0 0 -20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #ffffff;
+    transition: transform 0.2s ease;
+}
+
+.marker-pin:hover {
+    transform: rotate(-45deg) scale(1.15);
+}
+
+.marker-pin.pending {
+    background: linear-gradient(135deg, #F9D276 0%, #d4af37 100%);
+    color: #44000D;
+}
+
+.marker-pin.progress {
+    background: linear-gradient(135deg, #AD1D45 0%, #83142C 100%);
+    color: #ffffff;
+}
+
+.marker-pin.resolved {
+    background: linear-gradient(135deg, #22c55e 0%, #15803d 100%);
+    color: #ffffff;
+}
+
+.marker-icon {
+    transform: rotate(45deg);
+    font-size: 0.95rem;
+}
+
+/* Custom Popup de Leaflet */
+.leaflet-popup-content-wrapper {
+    background: linear-gradient(145deg, #44000D 0%, #83142C 100%) !important;
+    color: #ffffff !important;
+    border: 1.5px solid #F9D276 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6) !important;
+}
+
+.leaflet-popup-tip {
+    background: #83142C !important;
+    border: 1px solid #F9D276 !important;
+}
+
+.leaflet-popup-content {
+    margin: 12px !important;
+    line-height: 1.4 !important;
+    font-family: var(--font-family) !important;
+}
+
+.map-popup-card {
+    min-width: 220px;
+    max-width: 260px;
+}
+
+.popup-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.4rem;
+}
+
+.popup-tag.pending {
+    background: rgba(249, 210, 118, 0.2);
+    color: #F9D276;
+    border: 1px solid #F9D276;
+}
+
+.popup-tag.progress {
+    background: rgba(173, 29, 69, 0.3);
+    color: #ff859d;
+    border: 1px solid #AD1D45;
+}
+
+.popup-tag.resolved {
+    background: rgba(34, 197, 94, 0.2);
+    color: #4ade80;
+    border: 1px solid #22c55e;
+}
+
+.popup-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.3rem 0;
+}
+
+.popup-code {
+    font-size: 0.76rem;
+    color: #F9D276;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.popup-photo {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 0.4rem 0;
+    border: 1px solid rgba(249, 210, 118, 0.3);
+}
+
+.popup-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: #F9D276;
+    text-decoration: underline;
+    margin-top: 0.4rem;
+}
+
+@media (max-width: 768px) {
+    .leaflet-map-wrapper {
+        height: 320px;
+    }
+
+    .map-header-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

@@ -10,6 +10,7 @@ import CitizenPage from './pages/CitizenPage';
 import AuthorityPage from './pages/AuthorityPage';
 import AdminPage from './pages/AdminPage';
 import ReportsPage from './pages/ReportsPage';
+import WhatsAppWidget from './components/common/WhatsAppWidget';
 import './styles/App.css';
 
 function AppContent() {
@@ -89,6 +90,9 @@ function AppContent() {
           )}
         </div>
       </main>
+
+      {/* Botón flotante y modal oficial de WhatsApp */}
+      <WhatsAppWidget />
 
       {/* Footer */}
       <Footer />

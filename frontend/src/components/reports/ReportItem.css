@@ -1,18 +1,20 @@
+/* ReportItem.css - Paleta Oficial */
 .report-item {
-    background: linear-gradient(145deg, rgba(160, 58, 58, 0.6), rgba(140, 45, 45, 0.5));
-    border: 2px solid rgba(239, 199, 94, 0.3);
-    border-left: 5px solid var(--color-secondary);
-    border-radius: 12px;
+    background: linear-gradient(145deg, rgba(131, 20, 44, 0.75) 0%, rgba(68, 0, 13, 0.85) 100%);
+    border: 1.5px solid rgba(249, 210, 118, 0.3);
+    border-left: 5px solid var(--color-gold);
+    border-radius: 14px;
     padding: 1.8rem;
-    margin-bottom: 1.2rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1.4rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
 }
 
 .report-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(239, 199, 94, 0.25);
-    border-color: rgba(239, 199, 94, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35), 0 0 18px rgba(249, 210, 118, 0.2);
+    border-color: rgba(249, 210, 118, 0.6);
 }
 
 .report-header {
@@ -25,39 +27,97 @@
 
 .report-title {
     font-weight: 700;
-    font-size: 1.2rem;
-    color: #EFC75E;
+    font-size: 1.3rem;
+    color: var(--color-gold);
     flex: 1;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    font-family: var(--title-font);
 }
 
-.status-badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+.report-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1;
+}
+
+.report-type-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    background: rgba(68, 0, 13, 0.65);
+    border: 1px solid var(--color-gold);
+    color: #ffffff;
+    align-self: flex-start;
+}
+
+.priority-tag {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.priority-baja {
+    background: rgba(56, 161, 105, 0.25);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+}
+
+.priority-media {
+    background: rgba(249, 210, 118, 0.2);
+    color: var(--color-gold);
+    border: 1px solid rgba(249, 210, 118, 0.4);
+}
+
+.priority-alta {
+    background: rgba(229, 62, 62, 0.25);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.5);
+}
+
+.report-wa-btn:hover {
+    background: #25D366 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.45);
+    transform: translateY(-2px);
+}
+
+.status-badge {
+    padding: 0.45rem 1rem;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
     white-space: nowrap;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     letter-spacing: 0.5px;
 }
 
 .status-pending {
-    background: linear-gradient(135deg, #FFC107, #FF9800);
-    color: #7B1F2B;
-    border: 2px solid rgba(255, 193, 7, 0.3);
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-maroon);
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
 }
 
 .status-progress {
-    background: linear-gradient(135deg, #2196F3, #1976D2);
+    background: linear-gradient(135deg, var(--color-crimson) 0%, var(--color-wine) 100%);
     color: #ffffff;
-    border: 2px solid rgba(33, 150, 243, 0.3);
+    border: 1.5px solid rgba(249, 210, 118, 0.4);
 }
 
 .status-resolved {
-    background: linear-gradient(135deg, #4CAF50, #388E3C);
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
     color: #ffffff;
-    border: 2px solid rgba(76, 175, 80, 0.3);
+    border: 1.5px solid rgba(76, 175, 80, 0.5);
 }
 
 .report-meta {
@@ -65,32 +125,34 @@
     flex-wrap: wrap;
     gap: 1.2rem;
     margin-bottom: 1rem;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     color: rgba(255, 255, 255, 0.9);
-    padding: 0.8rem;
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    background: rgba(68, 0, 13, 0.5);
+    border: 1px solid rgba(249, 210, 118, 0.2);
+    border-radius: 10px;
 }
 
 .report-meta strong {
-    color: #EFC75E;
+    color: var(--color-gold);
     font-weight: 600;
 }
 
 .report-citizen {
-    font-size: 0.9rem;
-    color: var(--text-light);
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: 1rem;
+    padding-left: 0.2rem;
 }
 
 .report-citizen strong {
-    color: var(--primary-light);
+    color: var(--color-gold);
 }
 
 .report-description {
-    font-size: 0.95rem;
-    color: var(--text-color);
-    margin-bottom: 1rem;
+    font-size: 0.98rem;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
     line-height: 1.6;
 }
 
@@ -99,73 +161,80 @@
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    padding: 1rem;
-    background: linear-gradient(135deg, rgba(239, 199, 94, 0.15), rgba(239, 199, 94, 0.08));
-    border: 2px solid rgba(239, 199, 94, 0.4);
+    padding: 0.9rem 1.2rem;
+    background: linear-gradient(135deg, rgba(131, 20, 44, 0.6) 0%, rgba(68, 0, 13, 0.7) 100%);
+    border: 1.5px solid rgba(249, 210, 118, 0.35);
     border-radius: 10px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 .report-location i {
-    color: #EFC75E;
-    font-size: 1.4rem;
+    color: var(--color-gold);
+    font-size: 1.3rem;
 }
 
 .report-location span {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     font-weight: 500;
 }
 
 .location-link {
-    color: #EFC75E;
+    color: var(--color-maroon);
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
     text-decoration: none;
     font-weight: 700;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-left: auto;
-    transition: all 0.3s;
-    padding: 0.5rem 1rem;
-    background: rgba(239, 199, 94, 0.2);
+    transition: all 0.25s ease;
+    padding: 0.55rem 1.1rem;
     border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    font-size: 0.92rem;
 }
 
 .location-link:hover {
-    background: linear-gradient(135deg, #EFC75E, #d4af37);
-    color: var(--color-primary);
-    transform: translateX(5px);
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-gold) 100%);
+    color: var(--color-wine);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(249, 210, 118, 0.4);
 }
 
 /* Estilos para foto */
 .report-photo-section {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 .show-photo-btn {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background-color: var(--border-color);
-    color: var(--text-color);
-    border: none;
-    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    background: rgba(131, 20, 44, 0.7);
+    color: #ffffff;
+    border: 1px solid rgba(249, 210, 118, 0.3);
+    border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    transition: all 0.3s;
+    transition: all 0.25s ease;
+    font-size: 0.92rem;
 }
 
 .show-photo-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    background: rgba(173, 29, 69, 0.8);
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
 }
 
 .report-photo {
     margin-top: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
+    border: 2px solid rgba(249, 210, 118, 0.4);
+    border-radius: 12px;
     overflow: hidden;
     animation: fadeIn 0.3s ease-out;
+    background: rgba(0, 0, 0, 0.3);
 }
 
 @keyframes fadeIn {
@@ -187,9 +256,9 @@
 }
 
 .report-actions {
-    margin-top: 1rem;
+    margin-top: 1.2rem;
     display: flex;
-    gap: 0.5rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
 }
 
@@ -210,6 +279,8 @@
 
     .location-link {
         margin-left: 0;
+        width: 100%;
+        justify-content: center;
     }
 
     .report-photo img {

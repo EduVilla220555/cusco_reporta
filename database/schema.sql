@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS reports (
     code VARCHAR(20) NOT NULL UNIQUE COMMENT 'Código único del reporte (RPT-XXX)',
     title VARCHAR(200) NOT NULL,
     description TEXT,
-    type ENUM('vias', 'alumbrado', 'basura', 'otros') NOT NULL,
+    type ENUM('vias', 'alumbrado', 'basura', 'parques', 'agua', 'seguridad', 'otros') NOT NULL,
     priority ENUM('baja', 'media', 'alta') DEFAULT 'media',
     status ENUM('pending', 'progress', 'resolved') DEFAULT 'pending',
     citizen_id INT NOT NULL COMMENT 'ID del ciudadano que reporta',

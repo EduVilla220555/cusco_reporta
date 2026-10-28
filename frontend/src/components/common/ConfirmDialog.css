@@ -4,31 +4,29 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(42, 0, 8, 0.75);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9998;
+    backdrop-filter: blur(6px);
     animation: fadeIn 0.2s ease-out;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .confirm-dialog {
-    background-color: var(--card-background);
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
+    background: linear-gradient(150deg, rgba(131, 20, 44, 0.95) 0%, rgba(68, 0, 13, 0.98) 100%);
+    border-radius: 16px;
+    border: 2px solid var(--color-gold);
     max-width: 500px;
     width: 90%;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    animation: slideUp 0.3s ease-out;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(249, 210, 118, 0.15);
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
 }
 
 @keyframes slideUp {
@@ -43,11 +41,12 @@
 }
 
 .confirm-dialog-header {
-    padding: 1.5rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 1.8rem;
+    border-bottom: 1px solid rgba(249, 210, 118, 0.25);
     display: flex;
     align-items: center;
     gap: 1rem;
+    background: rgba(68, 0, 13, 0.4);
 }
 
 .confirm-dialog-header i {
@@ -56,38 +55,42 @@
 
 .confirm-dialog-header h3 {
     margin: 0;
-    color: var(--text-color);
-    font-size: 1.25rem;
+    color: var(--color-gold);
+    font-size: 1.3rem;
+    font-family: var(--title-font);
+    font-weight: 700;
 }
 
 .confirm-dialog-warning i {
-    color: var(--warning-color);
+    color: var(--color-gold);
 }
 
 .confirm-dialog-danger i {
-    color: var(--danger-color);
+    color: var(--color-crimson);
 }
 
 .confirm-dialog-info i {
-    color: var(--primary-color);
+    color: var(--color-gold);
 }
 
 .confirm-dialog-body {
-    padding: 1.5rem;
+    padding: 1.8rem;
 }
 
 .confirm-dialog-body p {
     margin: 0;
-    color: var(--text-color);
+    color: rgba(255, 255, 255, 0.95);
     line-height: 1.6;
+    font-size: 1.05rem;
 }
 
 .confirm-dialog-footer {
-    padding: 1rem 1.5rem;
-    border-top: 1px solid var(--border-color);
+    padding: 1.2rem 1.8rem;
+    border-top: 1px solid rgba(249, 210, 118, 0.25);
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
+    background: rgba(68, 0, 13, 0.4);
 }
 
 @media (max-width: 768px) {

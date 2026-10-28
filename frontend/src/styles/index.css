@@ -1,31 +1,59 @@
-/* Reset y Variables */
+/* Reset y Variables - Paleta Oficial Cusco Reporta */
 :root {
-  /* Paleta institucional Municipalidad Provincial del Cusco */
-  --color-primary: #7B1F2B;      /* Bordó institucional */
-  --color-secondary: #EFC75E;    /* Dorado */
-  --color-bg: #7B1F2B;
-  --color-card: #4e0a0a;
-  --color-text: #fff;
-  --color-green: #450000;        /* Verde oscuro para cards de roles */
-  --color-green-light: #550000;
-  --color-input-bg: #500602;     /* Verde oscuro para inputs */
-  
-  --font-family: 'Inter', sans-serif;
-  --title-font: 'Montserrat', sans-serif;
+  /* =========================================================
+     PALETA DE COLORES OFICIAL:
+     1. #F9D276 - Dorado Inti / Solar Gold (Acentos, Títulos, CTA)
+     2. #AD1D45 - Carmesí Andino / Radiant Crimson (Secundario, Interacción)
+     3. #83142C - Vino Tinto Imperial / Rich Burgundy (Superficies, Tarjetas)
+     4. #44000D - Granate Medianoche / Deep Maroon (Fondos, Canvas)
+     ========================================================= */
+  --color-gold: #F9D276;
+  --color-gold-hover: #fae099;
+  --color-gold-dark: #e5be5a;
+  --color-crimson: #AD1D45;
+  --color-crimson-light: #c72955;
+  --color-crimson-dark: #8a1334;
+  --color-wine: #83142C;
+  --color-wine-light: #9e1b38;
+  --color-maroon: #44000D;
+  --color-maroon-dark: #2a0008;
+
+  /* Aliases para compatibilidad */
+  --color-primary: #83142C;
+  --color-secondary: #F9D276;
+  --color-accent: #AD1D45;
+  --color-bg: #44000D;
+  --color-card: #83142C;
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.75);
+  --color-border: rgba(249, 210, 118, 0.35);
+
+  /* Variables estándar para componentes UI */
+  --primary-color: #F9D276;
+  --primary-light: #fae099;
+  --secondary-color: #F9D276;
+  --background-color: #44000D;
+  --card-background: rgba(131, 20, 44, 0.75);
+  --border-color: rgba(249, 210, 118, 0.35);
+  --text-color: #ffffff;
+  --text-light: rgba(255, 255, 255, 0.8);
+
+  /* Estados funcionales */
+  --danger-color: #AD1D45;
+  --warning-color: #F9D276;
+  --success-color: #38a169;
+  --info-color: #4299e1;
+
+  --font-family: 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
+  --heading-font: 'Outfit', sans-serif;
+  --title-font: 'Cinzel', 'Libre Baskerville', serif;
+  --accent-font: 'Great Vibes', cursive;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  font-family: var(--font-family);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.6;
-  min-height: 100vh;
 }
 
 html {
@@ -36,54 +64,107 @@ html {
   padding: 0;
 }
 
+body {
+  font-family: var(--font-family);
+  background: var(--color-maroon);
+  background-image: 
+    radial-gradient(ellipse at 50% -20%, #83142C 0%, #44000D 65%, #2a0008 100%);
+  background-attachment: fixed;
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tipografía refinada global */
+h1, h2, h3 {
+  font-family: var(--title-font);
+  color: var(--color-gold);
+  letter-spacing: 0.6px;
+  line-height: 1.25;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+h4, h5, h6 {
+  font-family: var(--heading-font);
+  color: var(--color-gold);
+  letter-spacing: 0.4px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+p, span, label, input, select, textarea, button {
+  font-family: var(--font-family);
+}
+
 #root {
   width: 100%;
   min-height: 100vh;
 }
 
-/* Contenedor especial para la página de login */
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-maroon-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-crimson), var(--color-wine));
+  border-radius: 5px;
+  border: 2px solid var(--color-maroon);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Contenedor especial para páginas */
 .login-page {
-  background: linear-gradient(135deg, #7B1F2B 0%, #5a1620 100%);
+  background: linear-gradient(135deg, #44000D 0%, #83142C 50%, #44000D 100%);
   min-height: 100vh;
 }
 
-.login-page .container,
-.home-page .container {
-  background: #ffffff;
-}
-
-/* Tarjeta de bienvenida con fondo blanco */
+/* Tarjeta de bienvenida */
 .welcome-card {
-  background: #ffffff;
-  border: 2px solid var(--color-secondary);
+  background: linear-gradient(145deg, rgba(131, 20, 44, 0.9), rgba(68, 0, 13, 0.95));
+  border: 2px solid var(--color-gold);
   border-radius: 14px;
   padding: 2rem 2.5rem;
   margin-bottom: 2rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(249, 210, 118, 0.15);
+  backdrop-filter: blur(12px);
 }
 
 .welcome-card h1,
 .welcome-card h2 {
-  color: var(--color-primary);
+  color: var(--color-gold);
 }
 
 .welcome-card p {
-  color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Sección de acceso al sistema */
 .access-section {
-  background: var(--color-primary);
-  border: 2px solid var(--color-secondary);
+  background: linear-gradient(145deg, rgba(131, 20, 44, 0.95), rgba(68, 0, 13, 0.98));
+  border: 2px solid var(--color-gold);
   border-radius: 14px;
   padding: 2rem 2.5rem;
   max-width: 600px;
   margin: 0 auto;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(249, 210, 118, 0.2);
+  backdrop-filter: blur(12px);
 }
 
 .access-section h2 {
-  color: #ffffff;
+  color: var(--color-gold);
   text-align: center;
   margin-bottom: 1.5rem;
 }

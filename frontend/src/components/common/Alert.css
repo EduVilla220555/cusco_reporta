@@ -1,13 +1,15 @@
 .alert {
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+    padding: 1rem 1.4rem;
+    border-radius: 12px;
+    margin-bottom: 1.2rem;
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    border: 1px solid transparent;
-    animation: slideIn 0.3s ease-out;
+    gap: 0.85rem;
+    border: 1.5px solid transparent;
+    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
 }
 
 @keyframes slideIn {
@@ -22,11 +24,14 @@
 }
 
 .alert i:first-child {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
+    flex-shrink: 0;
 }
 
 .alert span {
     flex: 1;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
 .alert-close {
@@ -35,8 +40,9 @@
     color: inherit;
     cursor: pointer;
     padding: 0.25rem;
-    opacity: 0.7;
+    opacity: 0.75;
     transition: opacity 0.2s;
+    font-size: 1.1rem;
 }
 
 .alert-close:hover {
@@ -45,25 +51,37 @@
 
 /* Tipos de alerta */
 .alert-success {
-    background-color: rgba(30, 70, 49, 0.9);
-    color: var(--success-color);
-    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(30, 70, 49, 0.95), rgba(46, 125, 50, 0.9));
+    color: #e6fffa;
+    border-color: rgba(72, 187, 120, 0.5);
 }
 
 .alert-error {
-    background-color: rgba(100, 44, 44, 0.9);
-    color: var(--danger-color);
-    border-color: var(--danger-color);
+    background: linear-gradient(135deg, rgba(131, 20, 44, 0.95), rgba(68, 0, 13, 0.95));
+    color: #ffffff;
+    border-color: var(--color-crimson);
+}
+
+.alert-error i:first-child {
+    color: var(--color-gold);
 }
 
 .alert-warning {
-    background-color: rgba(100, 75, 44, 0.9);
-    color: var(--warning-color);
-    border-color: var(--warning-color);
+    background: linear-gradient(135deg, rgba(131, 20, 44, 0.9), rgba(68, 0, 13, 0.95));
+    color: #ffffff;
+    border-color: var(--color-gold);
+}
+
+.alert-warning i:first-child {
+    color: var(--color-gold);
 }
 
 .alert-info {
-    background-color: rgba(23, 56, 74, 0.9);
-    color: #90CDF4;
-    border-color: #4299E1;
+    background: linear-gradient(135deg, rgba(68, 0, 13, 0.95), rgba(131, 20, 44, 0.85));
+    color: #ffffff;
+    border-color: rgba(249, 210, 118, 0.4);
+}
+
+.alert-info i:first-child {
+    color: var(--color-gold);
 }

@@ -4,16 +4,19 @@
     justify-content: center;
     gap: 0.5rem;
     border: none;
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 10px;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: var(--font-family);
+    text-decoration: none;
 }
 
 .btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
 /* Tamaños */
@@ -28,58 +31,75 @@
 }
 
 .btn-large {
-    padding: 1rem 2rem;
+    padding: 0.95rem 2rem;
     font-size: 1.125rem;
 }
 
 /* Variantes */
 .btn-primary {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+    color: var(--color-maroon);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .btn-primary:hover:not(:disabled) {
-    background-color: var(--primary-light);
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-gold) 100%);
+    color: var(--color-wine);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(124, 197, 81, 0.4);
+    box-shadow: 0 6px 20px rgba(249, 210, 118, 0.45);
 }
 
 .btn-secondary {
-    background-color: var(--card-background);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
+    background: rgba(131, 20, 44, 0.7);
+    color: #ffffff;
+    border: 1.5px solid rgba(249, 210, 118, 0.35);
 }
 
 .btn-secondary:hover:not(:disabled) {
-    background-color: var(--border-color);
+    background: rgba(173, 29, 69, 0.8);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(173, 29, 69, 0.4);
 }
 
 .btn-danger {
-    background-color: var(--danger-color);
-    color: white;
+    background: linear-gradient(135deg, var(--color-crimson) 0%, var(--color-wine) 100%);
+    color: #ffffff;
+    border: 1px solid rgba(249, 210, 118, 0.35);
 }
 
 .btn-danger:hover:not(:disabled) {
-    background-color: #C53030;
+    background: var(--color-crimson);
+    border-color: var(--color-gold);
     transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(173, 29, 69, 0.45);
 }
 
 .btn-warning {
-    background-color: var(--warning-color);
-    color: white;
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-hover) 100%);
+    color: var(--color-maroon);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .btn-warning:hover:not(:disabled) {
-    background-color: #C05621;
+    background: #ffffff;
+    color: var(--color-wine);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(249, 210, 118, 0.4);
 }
 
 .btn-success {
-    background-color: var(--success-color);
-    color: var(--background-color);
+    background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+    color: #ffffff;
+    border: 1px solid rgba(76, 175, 80, 0.4);
 }
 
 .btn-success:hover:not(:disabled) {
-    background-color: #C6F68D;
+    background: #388e3c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
 }
 
 /* Ancho completo */

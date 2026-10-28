@@ -4,20 +4,23 @@
     align-items: center;
     justify-content: center;
     padding: 3rem;
-    gap: 1rem;
+    gap: 1.2rem;
 }
 
 .loading-spinner {
-    color: var(--primary-color);
+    color: var(--color-gold);
     animation: pulse 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(249, 210, 118, 0.4));
 }
 
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
+        transform: scale(1);
     }
     50% {
-        opacity: 0.5;
+        opacity: 0.6;
+        transform: scale(0.95);
     }
 }
 
@@ -34,6 +37,7 @@
 }
 
 .loading-text {
-    color: var(--text-light);
+    color: var(--color-gold);
     font-size: 1.1rem;
+    font-weight: 600;
 }
